@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Spooky House | A Casa do Basquete</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      background:
+        radial-gradient(circle at center, #171717 0%, #050505 45%, #000 100%);
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .logo {
+      margin-bottom: 45px;
+    }
+
+    .logo h1 {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: 7px;
+      line-height: 1;
+    }
+
+    .logo p {
+      margin-top: 12px;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: #aaa;
+      text-transform: uppercase;
+    }
+
+    .login-card {
+      background: #0d0d0d;
+      border: 1px solid #252525;
+      border-radius: 14px;
+      padding: 30px 25px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+
+    .login-card h2 {
+      font-size: 22px;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    .input-group {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 15px;
+      background: #050505;
+      border: 1px solid #303030;
+      border-radius: 8px;
+      color: #fff;
+      outline: none;
+      transition: .2s;
+    }
+
+    .input-group input:focus {
+      border-color: #fff;
+    }
+
+    .login-button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #fff;
+      color: #000;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .login-button:hover {
+      background: #ddd;
+      transform: translateY(-1px);
+    }
+
+    .login-button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .forgot-password {
+      display: inline-block;
+      margin-top: 18px;
+      color: #aaa;
+      font-size: 13px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .forgot-password:hover {
+      color: #fff;
+    }
+
+    .message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 7px;
+      font-size: 13px;
+      display: none;
+    }
+
+    .message.error {
+      display: block;
+      background: #2a0c0c;
+      border: 1px solid #5b1c1c;
+      color: #ffb0b0;
+    }
+
+    .message.success {
+      display: block;
+      background: #0c2614;
+      border: 1px solid #1d5c2e;
+      color: #b4f5c4;
+    }
+
+    .footer {
+      margin-top: 30px;
+      color: #555;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    /* =========================
+       ÁREA DO ATLETA
+    ========================= */
+
+    .app {
+      min-height: 100vh;
+      background: #050505;
+    }
+
+    .topbar {
+      height: 70px;
+      border-bottom: 1px solid #202020;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      position: sticky;
+      top: 0;
+      background: rgba(5,5,5,.95);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .topbar-logo {
+      font-weight: 900;
+      letter-spacing: 4px;
+      font-size: 20px;
+    }
+
+    .logout-button {
+      border: 1px solid #333;
+      background: transparent;
+      color: #fff;
+      padding: 9px 14px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .logout-button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .dashboard {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 35px 20px 60px;
+    }
+
+    .welcome {
+      margin-bottom: 30px;
+    }
+
+    .welcome small {
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+    }
+
+    .welcome h1 {
+      margin-top: 8px;
+      font-size: 32px;
+    }
+
+    .welcome p {
+      color: #888;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .card {
+      background: #0d0d0d;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 23px;
+      min-height: 150px;
+    }
+
+    .card span {
+      font-size: 11px;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .card h3 {
+      margin-top: 12px;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin-top: 8px;
+      color: #888;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .card.full {
+      grid-column: 1 / -1;
+    }
+
+    .empty-state {
+      color: #777;
+      margin-top: 15px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 650px) {
+      .logo h1 {
+        font-size: 40px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card.full {
+        grid-column: auto;
+      }
+
+      .welcome h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       TELA DE LOGIN
+  ========================== -->
+
+  <section id="loginScreen" class="login-screen">
+
+    <div class="login-box">
+
+      <div class="logo">
+        <h1>SPOOKY</h1>
+        <p>A Casa do Basquete</p>
+      </div>
+
+      <div class="login-card">
+
+        <h2>Área do Atleta</h2>
+
+        <form id="loginForm">
+
+          <div class="input-group">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="seu@email.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="password">Senha</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Sua senha"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            id="loginButton"
+            class="login-button"
+          >
+            ENTRAR
+          </button>
+
+        </form>
+
+        <a
+          id="forgotPassword"
+          class="forgot-password
